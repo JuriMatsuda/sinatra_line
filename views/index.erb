@@ -1,39 +1,13 @@
-<!doctype html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>BBS</title>
-</head>
-<body>
-<h1>BBS</h1>
+<h2>
+  <%= me %>
+</h2>
+
 <ul>
-  <% @comments.each do |comment| %>
-    <li data-id="<%= comment.id %>">
-      <%= h comment.body %>
-      <span class="deleteCmd" style="cursor:pointer;color:red;">[delete]</span>
-    </li>
+  <% users.each do |user| %>
+      <li>
+        <%= user.name %>
+      </li>
   <% end %>
 </ul>
-<h2>Add New</h2>
-<form method="post" action="/new">
-  <input type="text" name="body">
-  <input type="submit" value="post!">
-</form>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-  $(".deleteCmd").click(function() {
-      var el = $(this).parent();
-      if (confirm("are you sure ?")) {
-          $.post('/delete', {
-              id: el.data("id")
-          }, function() {
-              el.fadeOut(800);
-          });
-      }
-  })
-</script>
-</body>
-</html>
+
