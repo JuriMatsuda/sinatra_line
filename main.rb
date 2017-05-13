@@ -70,5 +70,18 @@ module Line
       redirect '/'
     end
 
+    get '/talk' do
+      erb :talk
+    end
+
+    post '/talk' do
+      Comment.create(
+          topic_id: params[:topic_id],
+          body: params[:body]
+      )
+
+      redirect "/topic/#{params[:topic_id]}"
+    end
+
   end
 end
