@@ -71,6 +71,7 @@ module Line
     end
 
     get '/talk' do
+      @topics = Topic.all
       erb :talk
     end
 
