@@ -1,7 +1,10 @@
 require 'bundler'
 Bundler.require
 
-require './models/user.rb'
+require './models/user'
+require './models/topic'
+require './models/user_topic'
+require './models/comment'
 
 module Line
   class App < Sinatra::Base
@@ -68,6 +71,11 @@ module Line
     get '/logout' do
       session.destroy
       redirect '/'
+    end
+
+    get '/topics' do
+      #友達一覧が出る
+      erb :topics
     end
 
     get '/talk' do
