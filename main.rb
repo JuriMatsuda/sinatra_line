@@ -75,6 +75,7 @@ module Line
 
     get '/topics' do
       #友達一覧が出る
+      @users = User.all
       erb :topics
     end
 
@@ -85,11 +86,16 @@ module Line
 
     post '/talk' do
       Comment.create(
-          topic_id: params[:topic_id],
-          body: params[:body]
+          topic_id: params[:topic_id]
       )
 
       redirect "/topic/#{params[:topic_id]}"
+    end
+
+    comment = Comment.new do |u|
+      u.comment = params[:comment]
+      u.password = params[:password]
+      u.email = params[:email]
     end
 
   end
