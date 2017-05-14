@@ -1,7 +1,7 @@
 <ul>
-  <% users.each do |user| %>
+  <% @users.each do |user| %>
       <li>
-        <%= user.name %>
+        <a href="talk.erb"><%= user.name %></a>
       </li>
   <% end %>
 </ul>

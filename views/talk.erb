@@ -1,7 +1,14 @@
+<ul>
+  <% @topics.each do |topic| %>
+      <li>
+        <%= topic.title %>
+      </li>
+  <% end %>
+</ul>
+
 
 
 <form method="post" action="/talks">
-  <input type="text" name="title">
   <textarea type="text" name="body"></textarea>
   <input type="submit" value="送信">
 </form>

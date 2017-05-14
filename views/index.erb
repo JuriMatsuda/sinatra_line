@@ -3,9 +3,9 @@
 </h2>
 
 <ul>
-  <% users.each do |user| %>
+  <% @users.each do |user| %>
       <li>
-        <%= user.name %>
+        <a href="./talk"><%= user.name %></a>
       </li>
   <% end %>
 </ul>
