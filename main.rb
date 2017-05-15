@@ -72,31 +72,28 @@ module Line
       session.destroy
       redirect '/'
     end
-
+っs
     get '/topics' do
       #友達一覧が出る
       @users = User.all
-      erb :topics
+      erb :index
     end
 
     get '/talk' do
+      @comment = Comment.all
       @topics = Topic.all
       erb :talk
     end
 
     post '/talk' do
-      Comment.create(
-          topic_id: params[:topic_id]
-      )
-
-      redirect "/topic/#{params[:topic_id]}"
+      comment = Comment.new do |u|
+        u.comment = params[:comment]
+        u.post_id = params[:post_id]
+        u.user_id = params[:user_id]
+      end
     end
 
-    comment = Comment.new do |u|
-      u.comment = params[:comment]
-      u.password = params[:password]
-      u.email = params[:email]
-    end
+
 
   end
 end
