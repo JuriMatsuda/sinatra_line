@@ -31,8 +31,8 @@ module Line
 
 
     get '/' do
-      @users = User.all
-      erb :index, locals: { users: @users, me: username }
+      @topics = Topic.all
+      erb :index, locals: { topics: @topics, me: username }
     end
 
     get '/signup' do
@@ -72,28 +72,27 @@ module Line
       session.destroy
       redirect '/'
     end
-っs
+
     get '/topics' do
       #友達一覧が出る
       @users = User.all
       erb :index
     end
 
-    get '/talk' do
-      @comment = Comment.all
+    get '/topics/:id' do
+      #友達一覧が出る
+      @users = User.all
       @topics = Topic.all
-      erb :talk
+      erb :topics
     end
 
-    post '/talk' do
+    post '/topics/:id/comments' do
       comment = Comment.new do |u|
         u.comment = params[:comment]
-        u.post_id = params[:post_id]
-        u.user_id = params[:user_id]
+        u.topic_id = params[:id]
+        u.user_id = session[:uid]
       end
     end
-
-
 
   end
 end

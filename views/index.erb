@@ -1,11 +1,11 @@
-<h2>
+<h2 class="me">
   <%= me %>
 </h2>
 
 <ul>
-  <% @users.each do |user| %>
+  <% topics.each do |topic| %>
       <li>
-        <a href="./talk"><%= user.name %></a>
+        <a href="./topics/<%= topic.id%>"><%= topic.title %></a>
       </li>
   <% end %>
 </ul>
