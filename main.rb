@@ -35,6 +35,7 @@ module Line
 
       if login?
         @topics = Topic.all
+        #flash[:success] = 'ログインに成功しました！'
         erb :index, locals: { topics: @topics, me: username }
       else
         erb :login
@@ -71,15 +72,16 @@ module Line
       user = User.find_by(email: params[:email])
       if user && user.authenticate(params[:password])
         session[:uid] = user.id
+        flash[:success] = 'ログインに成功しました！'
         redirect '/'
       else
-        flash[:success] = 'ログインに成功しました'
         erb :login
       end
     end
 
     get '/logout' do
       session.destroy
+      flash[:logout] = 'ログアウトしました'
       redirect '/'
     end
 

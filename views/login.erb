@@ -1,3 +1,7 @@
+<% if flash.has?(:logout) %>
+    <%= flash[:logout] %>
+<% end %>
+
 <p>ログイン</p>
 <form method="post" action="/login">
   <p>Eメール</p>
