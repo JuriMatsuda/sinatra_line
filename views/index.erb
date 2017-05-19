@@ -10,4 +10,10 @@
   <% end %>
 </ul>
 
+<% if flash.has?(:success) %>
+    <h3 class="ok"><%= flash[:success] %></h3>
+<% end %>
 
+<% if flash.has?(:logout) %>
+  <%= flash[:logout] %>
+<% end %>

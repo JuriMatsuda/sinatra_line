@@ -15,12 +15,10 @@ module Line
     register Sinatra::ActiveRecordExtension
 
     use Rack::Session::Memcache, autofix_keys: true, secret: 'line'
+    use Rack::Flash
 
 
-    use Warden::Manager do |manager|
-      manager.default_strategies :custom_login_strategy
-      manager.failure_app = Sinatra::Application
-    end
+
 
     helpers do
       def login?
@@ -34,8 +32,15 @@ module Line
 
 
     get '/' do
-      @topics = Topic.all
-      erb :index, locals: { topics: @topics, me: username }
+
+      if login?
+        @topics = Topic.all
+        erb :index, locals: { topics: @topics, me: username }
+      else
+        erb :login
+      end
+      #@topics = Topic.all
+      #erb :index, locals: { topics: @topics, me: username }
     end
 
     get '/signup' do
@@ -43,6 +48,7 @@ module Line
     end
 
     post '/signup' do
+
       user = User.new do |u|
         u.name = params[:name]
         u.password = params[:password]
@@ -67,6 +73,7 @@ module Line
         session[:uid] = user.id
         redirect '/'
       else
+        flash[:success] = 'ログインに成功しました'
         erb :login
       end
     end
