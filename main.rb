@@ -38,7 +38,7 @@ module Line
         #flash[:success] = 'ログインに成功しました！'
         erb :index, locals: { topics: @topics, me: username }
       else
-        erb :login
+        redirect '/login'
       end
       #@topics = Topic.all
       #erb :index, locals: { topics: @topics, me: username }
