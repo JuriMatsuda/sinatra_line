@@ -35,6 +35,7 @@ module Line
 
       if login?
         @topics = Topic.all
+        @users = User.all
         #flash[:success] = 'ログインに成功しました！'
         erb :index, locals: { topics: @topics, me: username }
       else

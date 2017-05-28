@@ -7,10 +7,17 @@
 </h2>
 
 <ul>
-  <% topics.each do |topic| %>
+  <% @users.each do |user| %>
+  <li>
+    <%= user.name %>
+  </li>
+  <% end %>
+</ul>
+
+<ul>
+  <% @topics.each do |topic| %>
       <li>
         <a href="./topics/<%= topic.id%>"><%= topic.title %></a>
       </li>
   <% end %>
 </ul>
-
